@@ -13,11 +13,6 @@ from sklearn.impute import SimpleImputer
 from transformers.attributes_selector import AttributesSelector
 from transformers.new_features_adder import NewFeaturesAdder
 
-rootdir = os.path.join('..\\')
-datadir = os.path.join(rootdir, 'data')
-dataraw = os.path.join(datadir, 'raw')
-raw_datafile = os.path.join(dataraw, 'housing.csv')
-
 class DataProcessor:
 
     def __init__(self):
@@ -43,4 +38,5 @@ class DataProcessor:
         processed_matrix = full_pipeline.fit_transform(df)
         new_cols = num_attribs + list(oh_encoder.get_feature_names())
         self.processed_df = pd.DataFrame(processed_matrix.todense(), columns=new_cols)
+        self.processed_df.set_index(df.index, inplace=True)
         return self.processed_df
