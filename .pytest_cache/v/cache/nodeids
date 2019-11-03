@@ -1,0 +1,6 @@
+[
+  "src/data/tests/feature_engineering_test.py::test_enc_cat_features_one_hot_adds_proper_columns",
+  "src/data/tests/feature_engineering_test.py::test_enc_cat_features_one_hot_removes_original_features",
+  "src/data/tests/feature_engineering_test.py::test_enc_cat_features_one_hot_sets_correct_values",
+  "src/data/tests/utils_test.py::test_utils_get_timestamp_returns_string_of_certain_format"
+]
