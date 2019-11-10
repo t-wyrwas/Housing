@@ -8,10 +8,12 @@ import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 
 from transformers.attributes_selector import AttributesSelector
 from transformers.new_features_adder import NewFeaturesAdder
+
 
 class DataProcessor:
 
@@ -27,7 +29,8 @@ class DataProcessor:
 
         num_pipeline = Pipeline([('num_selector', AttributesSelector(num_attribs)),
                                  ('imputer', imputer),
-                                 ('new_features', NewFeaturesAdder(num_attribs))])
+                                 ('new_features', NewFeaturesAdder(num_attribs)),
+                                 ('scaler', StandardScaler())])
 
         cat_pipeline = Pipeline([('cat_selector', AttributesSelector(cat_attribs)),
                                 ('cat_encoder', oh_encoder)])
