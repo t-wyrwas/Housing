@@ -22,7 +22,8 @@ class DataProcessor:
 
     def process_data(self, df) -> pd.DataFrame:
         cat_attribs = ['ocean_proximity']
-        num_attribs = [c for c in df.columns if c not in cat_attribs]
+        target = 'median_house_value'
+        num_attribs = [c for c in df.columns if c not in cat_attribs + [target]]
 
         oh_encoder = OneHotEncoder(categories='auto')
         imputer = SimpleImputer(strategy="median")
@@ -42,4 +43,7 @@ class DataProcessor:
         new_cols = num_attribs + list(oh_encoder.get_feature_names())
         self.processed_df = pd.DataFrame(processed_matrix.todense(), columns=new_cols)
         self.processed_df.set_index(df.index, inplace=True)
+        self.columns = new_cols
+        self.X = self.processed_df.values
+        self.Y = df[target].values
         return self.processed_df
