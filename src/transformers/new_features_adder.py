@@ -16,6 +16,7 @@ class NewFeaturesAdder(BaseEstimator, TransformerMixin):
     def transform(self, X: np.ndarray, y: np.ndarray=None) -> np.ndarray:
         people_per_household = X[:, self.population_index] / X[:, self.households_index]
         bedrooms_per_room = X[:, self.total_bedrooms_index] / X[:, self.total_rooms_index]
-        self.attribs.append('people_per_household')
-        self.attribs.append('bedrooms_per_room')
+        # self.attribs.append('people_per_household')
+        # self.attribs.append('bedrooms_per_room')
+        self.new_attribs = ['people_per_household', 'bedrooms_per_room']
         return np.c_[X, people_per_household, bedrooms_per_room]

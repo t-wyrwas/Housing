@@ -11,5 +11,5 @@ class AttributesSelector(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None):
         return self
 
-    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
-        return X[self.attributes].values
+    def transform(self, X: pd.DataFrame) -> np.ndarray:
+        return np.array(X[self.attributes].values)
